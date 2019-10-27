@@ -5,7 +5,7 @@ require('./app.css');
 console.log('This be changin');
 
 // JSX - JavaScript XML
-var template = (
+const template = (
     <div>
         <h1>The world be changin'</h1>
         <p>We be testin' also as well.</p>
@@ -16,6 +16,14 @@ var template = (
     </div>
 );
 
+const templateTwo = (
+    <div>
+        <h1>Nahuel</h1>
+        <p>Age: 26</p>
+        <p>Location: Planet Earth</p>
+    </div>
+);
+
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
