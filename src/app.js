@@ -4,11 +4,15 @@ require('./app.css');
 
 console.log('This be changin');
 
+const app = {
+    title: 'Mai Taitle',
+    subtitle: 'Mai Subtaitle'
+}
 // JSX - JavaScript XML
 const template = (
     <div>
-        <h1>The world be changin'</h1>
-        <p>We be testin' also as well.</p>
+        <h1>{ app.title }</h1>
+        <p>{ app.subtitle }</p>
         <ul>
             <li>Item 1</li>
             <li>Item 2</li>
@@ -16,14 +20,20 @@ const template = (
     </div>
 );
 
+let user = {
+    name: 'Nahuel',
+    age: '34',
+    location: 'Earth'
+}
+
 const templateTwo = (
     <div>
-        <h1>Nahuel</h1>
-        <p>Age: 26</p>
-        <p>Location: Planet Earth</p>
+        <h1>{ user.name + '!!!' }</h1>
+        <p>Age: { user.age }</p>
+        <p>Location: { user.location }</p>
     </div>
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
