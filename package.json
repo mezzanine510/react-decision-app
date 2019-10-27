@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack && webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
