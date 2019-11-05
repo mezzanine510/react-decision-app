@@ -12,6 +12,7 @@ const app = {
 const template = (
     <div>
         <h1>{ app.title }</h1>
+
         <p>{ app.subtitle }</p>
         <ul>
             <li>Item 1</li>
