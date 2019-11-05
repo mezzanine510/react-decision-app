@@ -9,17 +9,15 @@ const app = {
     subtitle: 'Mai Subtaitle',
     options: [ 'One', 'Two' ]
 }
+
 // JSX - JavaScript XML
 const template = (
     <div>
         <h1>{ app.title }</h1>
-<<<<<<< HEAD
 
         <p>{ app.subtitle }</p>
-=======
         { app.subtitle && <p>{ app.subtitle }</p> }
         { app.options.length > 0 ? <p>Here are your options</p> : <p>No options</p> }
->>>>>>> d69e17980151b19c3e835823103beb6db17fb8ce
         <ul>
             <li>{ app.options[0] }</li>
             <li>{ app.options[1] }</li>
