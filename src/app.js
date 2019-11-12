@@ -7,7 +7,7 @@ console.log('This be changin');
 const app = {
     title: 'Mai Taitle',
     subtitle: 'Mai Subtaitle',
-    options: [ 'One', 'Two' ]
+    options: [ 'Item One', 'Item Two' ]
 }
 
 // JSX - JavaScript XML
@@ -22,39 +22,13 @@ const template = (
             <li>{ app.options[0] }</li>
             <li>{ app.options[1] }</li>
         </ul>
+
+    <form>
+        <input type="text" name="option"/>
+        <button>Add Option</button>
+    </form>
     </div>
 );
 
-let count = 0;
-const addOne = () => {
-    ++count;
-    RenderCounterApp();
-}
-
-const subtractOne = () => {
-    --count;
-    RenderCounterApp();
-}
-
-const resetCount = () => {
-    count = 0;
-    RenderCounterApp();
-}
-
-
 const appRoot = document.getElementById('app');
-
-const RenderCounterApp = () => {
-    const templateTwo = (
-        <div>
-            <h1>Count: { count }</h1>
-            <button onClick={ addOne }>+1</button>
-            <button onClick={ subtractOne }>-1</button>
-            <button onClick={ resetCount }>reset</button>
-        </div>
-    );
-
-    ReactDOM.render(templateTwo, appRoot);
-}
-
-RenderCounterApp();
+ReactDOM.render(template, appRoot);
