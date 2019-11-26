@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/playground/build-it-visible.js',
+    entry: './src/playground/es6-classes-1.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
