@@ -4,11 +4,15 @@ require('./app.css');
 
 class DecisionApp extends React.Component {
     render() {
+        const title = 'Decision';
+        const subtitle = 'Put your life in the hands of yourself.';
+        const options = ['First thing', 'Second thing', 'Third thing'];
+
         return (
             <div>
-                <Header />
+                <Header title={ title } subtitle={ subtitle } />
                 <Action />
-                <Options />
+                <Options options={ options } />
                 <AddOption />
             </div>
         );
@@ -17,21 +21,25 @@ class DecisionApp extends React.Component {
 
 class Header extends React.Component {
     render() {
+        console.log(this.props);
         return (
             <div>
-                <h1>Decision</h1>
-                <h2>Put your life in the hands of yourself.</h2>
+                <h1>{ this.props.title }</h1>
+                <h2>{ this.props.subtitle }</h2>
             </div>
         );
     }
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert('Handled the pick!');
+    }
+
     render() {
         return (
             
-                <button>What should I do?</button>
-            
+                <button onClick={ this.handlePick }>What should I do?</button>
         );
     }
 }
@@ -40,9 +48,9 @@ class Options extends React.Component {
     render() {
         return (
             <div>
-                <Option />
-                <Option />
-                <Option />
+                {
+                    this.props.options.map((option) => <Option key={ option } optionText={ option } />)
+                }
             </div>
         );
     }
@@ -51,7 +59,7 @@ class Options extends React.Component {
 class Option extends React.Component {
     render() {
         return (
-            <p>Option</p>
+            <p>{ this.props.optionText }</p>
         );
     }
 }
@@ -64,13 +72,13 @@ class AddOption extends React.Component {
     }
 }
 
-const jsx = (
-    <div>
-        <Header />
-        <Action />
-        <Options />
-        <AddOption />
-    </div>
-);
+// const jsx = (
+//     <div>
+//         <Header />
+//         <Action />
+//         <Options />
+//         <AddOption />
+//     </div>
+// );
 
 ReactDOM.render(<DecisionApp />, document.getElementById('app'));
