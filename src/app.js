@@ -2,6 +2,19 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 require('./app.css');
 
+class DecisionApp extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Action />
+                <Options />
+                <AddOption />
+            </div>
+        );
+    }
+}
+
 class Header extends React.Component {
     render() {
         return (
@@ -27,10 +40,18 @@ class Options extends React.Component {
     render() {
         return (
             <div>
-                <p>option 1</p>
-                <p>option 2</p>
-                <p>option 3</p>
+                <Option />
+                <Option />
+                <Option />
             </div>
+        );
+    }
+}
+
+class Option extends React.Component {
+    render() {
+        return (
+            <p>Option</p>
         );
     }
 }
@@ -52,4 +73,4 @@ const jsx = (
     </div>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<DecisionApp />, document.getElementById('app'));
