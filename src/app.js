@@ -21,7 +21,7 @@ class DecisionApp extends React.Component {
 
 class Header extends React.Component {
     render() {
-        console.log(this.props);
+        console.log('<Header />\'s this.props:', this.props);
 
         return (
             <div>
