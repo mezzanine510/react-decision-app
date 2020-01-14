@@ -30,7 +30,7 @@ class VisibilityToggle extends React.Component {
                   <div>
                       <p>Details Here! Life Is Awesome! Always Remember That!</p>
                   </div>
-              ) }
+              )}
           </div>  
         );
     }
