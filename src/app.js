@@ -18,10 +18,9 @@ class DecisionApp extends React.Component {
         });
     }
 
-    // addOption
-    addOption() {
-        this.setState((prevState) => {
-            return { options: prevState.options.push() }
+    addOption(option) {
+        this.setState((prevState, option) => {
+            return { options: prevState.options.push(option) }
         })
     }
 
@@ -31,11 +30,21 @@ class DecisionApp extends React.Component {
 
         return (
             <div>
-                <Header title={ title } subtitle={ subtitle } />
-                <Action hasOptions={ this.state.options.length > 0 }/>
-                <Options options={ this.state.options }
-                         deleteOptions={ this.deleteOptions } />
-                <AddOption addOption={ this.addOption }/>
+                <Header
+                    title={ title }
+                    subtitle={ subtitle }
+                />
+                <Action
+                    hasOptions={ this.state.options.length > 0 }
+                    addOption={ this.addOption }
+                />
+                <Options
+                    options={ this.state.options }
+                    deleteOptions={ this.deleteOptions }
+                />
+                <AddOption
+                    addOption={ this.addOption }
+                />
             </div>
         );
     }
