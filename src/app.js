@@ -9,7 +9,7 @@ class DecisionApp extends React.Component {
         this.addOption = this.addOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.state = {
-            options: []
+            options: props.options
         }
     }
 
@@ -59,6 +59,10 @@ class DecisionApp extends React.Component {
             </div>
         );
     }
+}
+
+DecisionApp.defaultProps = {
+    options: []
 }
 
 const Header = (props) => {
