@@ -19,10 +19,15 @@ class DecisionApp extends React.Component {
     }
 
     addOption(option) {
-        console.log(option);
-        // this.setState((prevState, option) => {
-        //     return { options: prevState.options.push(option) }
-        // })
+        if (!option) {
+            return 'Enter valid value to add item';
+        } else if (this.state.options.indexOf(option) > -1) {
+            return 'This option already exists';
+        }
+
+        this.setState((prevState) => {
+            return { options: prevState.options.concat(option) }
+        });
     }
 
     render() {
@@ -106,24 +111,31 @@ class AddOption extends React.Component {
     constructor(props) {
         super(props);
         this.addOption = this.addOption.bind(this);
+        this.state = {
+            error: undefined
+        }
     }
 
     addOption(event) {
         event.preventDefault();
         // .elements is a React method that lets you access the elements of an event target
         const option = event.target.elements.option.value;
-        
-        if (option) {
-            this.props.addOption(option);
-        }
+        const error = this.props.addOption(option);
+
+        this.setState(() => {
+            return { error }
+        });
     }
     
     render() {
         return (
-            <form onSubmit={ this.addOption }>
-                <input type="text" name="option"/>
-                <button>Add Option</button>
-            </form>
+            <div>
+                { this.state.error && <p>{ this.state.error }</p> }
+                <form onSubmit={ this.addOption }>
+                    <input type="text" name="option"/>
+                    <button>Add Option</button>
+                </form>
+            </div>
         );
     }
 }
