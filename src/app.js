@@ -8,7 +8,7 @@ class DecisionApp extends React.Component {
         this.deleteOptions = this.deleteOptions.bind(this);
         this.addOption = this.addOption.bind(this);
         this.state = {
-            options: ['test']
+            options: ['test', 'another test']
         }
     }
 
@@ -19,9 +19,10 @@ class DecisionApp extends React.Component {
     }
 
     addOption(option) {
-        this.setState((prevState, option) => {
-            return { options: prevState.options.push(option) }
-        })
+        console.log(option);
+        // this.setState((prevState, option) => {
+        //     return { options: prevState.options.push(option) }
+        // })
     }
 
     render() {
@@ -102,16 +103,24 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
-    handleAddOption(event) {
+    constructor(props) {
+        super(props);
+        this.addOption = this.addOption.bind(this);
+    }
+
+    addOption(event) {
         event.preventDefault();
-        const option = event.target.elements.option.value; // .elements is a React method that lets you access the elements of an event target
+        // .elements is a React method that lets you access the elements of an event target
+        const option = event.target.elements.option.value;
         
-        console.log(option ? alert(option.trim()) : null);
+        if (option) {
+            this.props.addOption(option);
+        }
     }
     
     render() {
         return (
-            <form onSubmit={ this.handleAddOption }>
+            <form onSubmit={ this.addOption }>
                 <input type="text" name="option"/>
                 <button>Add Option</button>
             </form>
