@@ -13,12 +13,6 @@ class DecisionApp extends React.Component {
         }
     }
 
-    deleteOptions() {
-        this.setState(() => {
-            return { options: [] }
-        });
-    }
-
     addOption(option) {
         if (!option) {
             return 'Enter valid value to add item';
@@ -26,9 +20,14 @@ class DecisionApp extends React.Component {
             return 'This option already exists';
         }
 
-        this.setState((prevState) => {
-            return { options: prevState.options.concat(option) }
-        });
+        this.setState((prevState) => ({ options: prevState.options.concat(option) }));
+    }
+
+    deleteOptions() {
+        // this.setState(() => {
+        //     return { options: [] }
+        // });
+        this.setState(() => ({ options: [] }));
     }
 
     handlePick() {
@@ -123,9 +122,7 @@ class AddOption extends React.Component {
         const option = event.target.elements.option.value;
         const error = this.props.addOption(option);
 
-        this.setState(() => {
-            return { error }
-        });
+        this.setState(() => ({ error }));
     }
     
     render() {
