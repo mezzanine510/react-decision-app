@@ -5,8 +5,9 @@ require('./app.css');
 class DecisionApp extends React.Component {
     constructor(props) {
         super(props);
-        this.deleteOptions = this.deleteOptions.bind(this);
         this.addOption = this.addOption.bind(this);
+        this.deleteOptions = this.deleteOptions.bind(this);
+        this.deleteTargetOption = this.deleteTargetOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.state = {
             options: props.options
@@ -16,18 +17,25 @@ class DecisionApp extends React.Component {
     addOption(option) {
         if (!option) {
             return 'Enter valid value to add item';
-        } else if (this.state.options.indexOf(option) > -1) { // returns -1 if option is a duplicate
+        } else if (this.state.options.indexOf(option) > -1) { // returns -1 if option has duplicate in array
             return 'This option already exists';
         }
 
-        this.setState((prevState) => ({ options: prevState.options.concat(option) }));
+        this.setState((prevState) => ({
+            options: prevState.options.concat(option)
+        }));
     }
 
     deleteOptions() {
-        // this.setState(() => {
-        //     return { options: [] }
-        // });
-        this.setState(() => ({ options: [] }));
+        this.setState( () => ({ options: [] }) );
+    }
+
+    deleteTargetOption(targetOption) {
+        this.setState((prevState) => ({ 
+            options: prevState.options.filter((option) => {
+                return targetOption !== option;
+            }
+        )}));
     }
 
     handlePick() {
@@ -51,6 +59,7 @@ class DecisionApp extends React.Component {
                 <Options
                     options={ this.state.options }
                     deleteOptions={ this.deleteOptions }
+                    deleteTargetOption={ this.deleteTargetOption }
                 />
                 <AddOption
                     addOption={ this.addOption }
@@ -94,7 +103,11 @@ const Options = (props) => {
             <button onClick={ props.deleteOptions }>Remove All</button>
             {
                 props.options.map((option) => 
-                    <Option key={ option } optionText={ option } />
+                    <Option
+                        key={ option }
+                        optionText={ option }
+                        deleteTargetOption={ props.deleteTargetOption }
+                    />
                 )
             }
         </div>
@@ -103,7 +116,16 @@ const Options = (props) => {
 
 const Option = (props) => {
     return (
-        <p>{ props.optionText }</p>
+        <div>
+            <p>{ props.optionText }</p>
+            <button
+                onClick={ (e) => { // e, or event, is not necessary
+                    props.deleteTargetOption(props.optionText)
+                }}
+            >
+                Remove
+            </button>
+        </div>
     );
 }
 
