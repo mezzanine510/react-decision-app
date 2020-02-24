@@ -14,6 +14,20 @@ class DecisionApp extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log('componentDidMount()');
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate()');
+        console.log('prevProps:', prevProps);
+        console.log('prevState:', prevState);
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+    
     addOption(option) {
         if (!option) {
             return 'Enter valid value to add item';
@@ -31,7 +45,7 @@ class DecisionApp extends React.Component {
     }
 
     deleteTargetOption(targetOption) {
-        this.setState((prevState) => ({ 
+        this.setState((prevState) => ({
             options: prevState.options.filter((option) => {
                 return targetOption !== option;
             }
