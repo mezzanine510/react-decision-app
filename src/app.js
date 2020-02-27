@@ -15,11 +15,15 @@ class DecisionApp extends React.Component {
     }
 
     componentDidMount() {
-        const json = localStorage.getItem('options');
-        const options = JSON.parse(json);
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
 
-        if (options) {
-            this.setState(() => ({ options: options }))
+            if (options) {
+                this.setState(() => ({ options: options }))
+            }
+        } catch (e) {
+            
         }
     }
 
@@ -124,6 +128,7 @@ const Options = (props) => {
     return (
         <div>
             <button onClick={ props.removeAllOptions }>Remove All</button>
+            { props.options.length === 0 && <p>Please add an option to get started.</p> }
             {
                 props.options.map((option) => 
                     <Option
@@ -168,6 +173,10 @@ class AddOption extends React.Component {
         const error = this.props.addOption(option);
 
         this.setState(() => ({ error }));
+
+        if (!error) {
+            event.target.elements.option.value = '';
+        }
     }
     
     render() {
