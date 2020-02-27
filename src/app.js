@@ -6,8 +6,8 @@ class DecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.addOption = this.addOption.bind(this);
-        this.deleteOptions = this.deleteOptions.bind(this);
-        this.deleteTargetOption = this.deleteTargetOption.bind(this);
+        this.removeAllOptions = this.removeAllOptions.bind(this);
+        this.removeOption = this.removeOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.state = {
             options: props.options
@@ -15,13 +15,19 @@ class DecisionApp extends React.Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount()');
+        const json = localStorage.getItem('options');
+        const options = JSON.parse(json);
+
+        if (options) {
+            this.setState(() => ({ options: options }))
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('componentDidUpdate()');
-        console.log('prevProps:', prevProps);
-        console.log('prevState:', prevState);
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
     }
 
     componentWillUnmount() {
@@ -40,11 +46,11 @@ class DecisionApp extends React.Component {
         }));
     }
 
-    deleteOptions() {
+    removeAllOptions() {
         this.setState( () => ({ options: [] }) );
     }
 
-    deleteTargetOption(targetOption) {
+    removeOption(targetOption) {
         this.setState((prevState) => ({
             options: prevState.options.filter((option) => {
                 return targetOption !== option;
@@ -66,15 +72,18 @@ class DecisionApp extends React.Component {
                     title={ title }
                     subtitle={ subtitle }
                 />
+
                 <Action
                     hasOptions={ this.state.options.length > 0 }
                     handlePick={ this.handlePick }
                 />
+
                 <Options
                     options={ this.state.options }
-                    deleteOptions={ this.deleteOptions }
-                    deleteTargetOption={ this.deleteTargetOption }
+                    removeAllOptions={ this.removeAllOptions }
+                    removeOption={ this.removeOption }
                 />
+                
                 <AddOption
                     addOption={ this.addOption }
                 />
@@ -114,13 +123,13 @@ const Action = (props) => {
 const Options = (props) => {
     return (
         <div>
-            <button onClick={ props.deleteOptions }>Remove All</button>
+            <button onClick={ props.removeAllOptions }>Remove All</button>
             {
                 props.options.map((option) => 
                     <Option
                         key={ option }
                         optionText={ option }
-                        deleteTargetOption={ props.deleteTargetOption }
+                        removeOption={ props.removeOption }
                     />
                 )
             }
@@ -134,7 +143,7 @@ const Option = (props) => {
             <p>{ props.optionText }</p>
             <button
                 onClick={ (e) => { // e, or event, is not necessary
-                    props.deleteTargetOption(props.optionText)
+                    props.removeOption(props.optionText)
                 }}
             >
                 Remove
