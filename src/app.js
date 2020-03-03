@@ -10,7 +10,7 @@ class DecisionApp extends React.Component {
         this.removeOption = this.removeOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.state = {
-            options: props.options
+            options: []
         }
     }
 
@@ -96,9 +96,10 @@ class DecisionApp extends React.Component {
     }
 }
 
-DecisionApp.defaultProps = {
-    options: []
-}
+// // This was used when we were passing 'options' as props - now we use an empty array by default 
+// DecisionApp.defaultProps = {
+//     options: []
+// }
 
 const Header = (props) => {
     return (
