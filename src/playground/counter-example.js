@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+require('../app.css');
 
 class Counter extends React.Component {
     constructor(props) {
@@ -14,10 +15,10 @@ class Counter extends React.Component {
 
     componentDidMount() {
         try {
-            const json = localStorage.getItem('count');
-            const count = JSON.parse(json);
+            const stringCount = localStorage.getItem('count');
+            const count = JSON.parse(stringCount); // you can also use parseInt() to be safe
 
-            if (count) {
+            if (!isNaN(count)) {
                 this.setState(() => ({ count }));
             }
         } catch (e) {
@@ -26,8 +27,10 @@ class Counter extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const json = JSON.stringify(this.state.count);
-        localStorage.setItem('count', json);
+        if (prevState.count !== this.state.count) {
+            const json = JSON.stringify(this.state.count);
+            localStorage.setItem('count', json);
+        }
     }
 
     // componentWillUnmount() {
