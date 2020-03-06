@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { square, add } from './utils'; // for debugging
-import { isAdult, canDrink } from './person';
+import validator from "validator";
+import subtract, { square, add } from './utils'; // for debugging
+import isSeniorCitizen, { isAdult, canDrink } from './person';
 import './style.css';
 
-console.log(square(2));
-console.log(add(5, 3));
-console.log(isAdult(29));
-console.log(canDrink(14));
+// console.log(square(2));
+// console.log(add(5, 3));
+// console.log(subtract(4, 3));
+// console.log(isAdult(29));
+// console.log(canDrink(14));
+// console.log(isSeniorCitizen(64));
+console.log(validator.isEmail('valid@geezmail.net'));
+
+
 
 class DecisionApp extends React.Component {
     constructor(props) {

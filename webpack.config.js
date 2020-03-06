@@ -14,6 +14,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js)$/,
+                exclude: /node_modules/,
                 use: 'babel-loader'
             },
             {
@@ -25,12 +26,12 @@ module.exports = {
             }
         ]
     },
-    mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
     ],
+    mode: 'production',
     devtool: 'source-map',
     devServer: {
 
