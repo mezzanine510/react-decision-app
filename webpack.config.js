@@ -31,8 +31,8 @@ module.exports = {
             template: './src/index.html'
         })
     ],
-    mode: 'production',
-    devtool: 'source-map',
+    // mode: 'production',
+    // devtool: 'source-map',
     devServer: {
 
     }
