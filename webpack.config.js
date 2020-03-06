@@ -29,5 +29,8 @@ module.exports = {
             template: './src/index.html'
         })
     ],
+    devServer: {
+
+    },
     devtool: 'source-map'
 }

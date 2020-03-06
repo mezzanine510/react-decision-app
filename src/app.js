@@ -22,8 +22,9 @@ class DecisionApp extends React.Component {
             if (options) {
                 this.setState(() => ({ options: options }))
             }
-        } catch (e) {
-            
+        }
+        catch (error) {
+            console.log('Error:', error);
         }
     }
 
