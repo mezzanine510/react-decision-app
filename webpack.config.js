@@ -31,9 +31,9 @@ module.exports = {
             template: './src/index.html'
         })
     ],
-    // mode: 'production',
-    // devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
-
+        contentBase: path.resolve(__dirname, 'dist')
     }
+    // mode: 'production'
 }
