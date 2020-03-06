@@ -1,6 +1,9 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-require('./app.css');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { square } from './utils'; // for debugging
+import './style.css';
+
+console.log(square(2));
 
 class DecisionApp extends React.Component {
     constructor(props) {
