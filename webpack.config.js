@@ -1,9 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+console.log(__dirname);
+
 module.exports = {
-    entry: './src/playground/counter-example.js',
-    // entry: './src/app.js',
+    entry: './src/app.js',
+    // entry: './src/playground/counter-example.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -12,6 +14,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js)$/,
+                exclude: /node_modules/,
                 use: 'babel-loader'
             },
             {
@@ -23,14 +26,14 @@ module.exports = {
             }
         ]
     },
-    mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
     ],
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
-
-    },
-    devtool: 'source-map'
+        contentBase: path.resolve(__dirname, 'dist')
+    }
+    // mode: 'production'
 }
