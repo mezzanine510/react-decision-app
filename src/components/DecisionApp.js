@@ -5,17 +5,38 @@ import AddOption from './AddOption';
 import Action from './Action';
 
 export default class DecisionApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.addOption = this.addOption.bind(this);
-        this.removeAllOptions = this.removeAllOptions.bind(this);
-        this.removeOption = this.removeOption.bind(this);
-        this.handlePick = this.handlePick.bind(this);
-        this.state = {
-            options: []
-        }
+    state = {
+        options: []
     }
 
+    addOption = (option) => {
+        if (!option) {
+            return 'Enter valid value to add item';
+        } else if (this.state.options.indexOf(option) > -1) { // returns -1 if option has duplicate in array
+            return 'This option already exists';
+        }
+
+        this.setState((prevState) => ({
+            options: prevState.options.concat(option)
+        }));
+    }
+
+    removeAllOptions = () => {
+        this.setState( () => ({ options: [] }) );
+    }
+
+    removeOption = (targetOption) => {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => {
+                return targetOption !== option;
+            }
+        )}));
+    }
+
+    handlePick = () => {
+        console.log('handlePick() executed!');
+    }
+    
     componentDidMount() {
         try {
             const json = localStorage.getItem('options');
@@ -39,34 +60,6 @@ export default class DecisionApp extends React.Component {
 
     componentWillUnmount() {
         console.log('componentWillUnmount');
-    }
-    
-    addOption(option) {
-        if (!option) {
-            return 'Enter valid value to add item';
-        } else if (this.state.options.indexOf(option) > -1) { // returns -1 if option has duplicate in array
-            return 'This option already exists';
-        }
-
-        this.setState((prevState) => ({
-            options: prevState.options.concat(option)
-        }));
-    }
-
-    removeAllOptions() {
-        this.setState( () => ({ options: [] }) );
-    }
-
-    removeOption(targetOption) {
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => {
-                return targetOption !== option;
-            }
-        )}));
-    }
-
-    handlePick() {
-        console.log('handlePick() executed!');
     }
 
     render() {
