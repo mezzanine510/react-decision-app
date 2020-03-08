@@ -7,14 +7,26 @@ export default class AddOption extends React.Component {
 
     addOption = (event) => {
         event.preventDefault();
-        // .elements is a React method that lets you access the elements of an event target
         const option = event.target.elements.option.value;
-        const error = this.props.addOption(option);
+        const error = this.checkForErrors(option);
 
         this.setState(() => ({ error }));
 
         if (!error) {
+            this.props.addOption(option);
             event.target.elements.option.value = '';
+        }
+    }
+    
+    checkForErrors = (option) => {
+        if (!option) {
+            return 'Enter valid value to add item';
+        }
+        else if (this.props.options.indexOf(option) > -1) { // returns -1 if option has duplicate in array
+            return 'This option already exists';
+        }
+        else {
+            return null;
         }
     }
     

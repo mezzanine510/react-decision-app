@@ -10,12 +10,6 @@ export default class DecisionApp extends React.Component {
     }
 
     addOption = (option) => {
-        if (!option) {
-            return 'Enter valid value to add item';
-        } else if (this.state.options.indexOf(option) > -1) { // returns -1 if option has duplicate in array
-            return 'This option already exists';
-        }
-
         this.setState((prevState) => ({
             options: prevState.options.concat(option)
         }));
@@ -70,23 +64,20 @@ export default class DecisionApp extends React.Component {
             <div>
                 <Header
                     title={ title }
-                    subtitle={ subtitle }
-                />
+                    subtitle={ subtitle } />
 
                 <Action
                     hasOptions={ this.state.options.length > 0 }
-                    handlePick={ this.handlePick }
-                />
+                    handlePick={ this.handlePick } />
 
                 <Options
                     options={ this.state.options }
                     removeAllOptions={ this.removeAllOptions }
-                    removeOption={ this.removeOption }
-                />
+                    removeOption={ this.removeOption } />
                 
                 <AddOption
-                    addOption={ this.addOption }
-                />
+                    options={ this.state.options }
+                    addOption={ this.addOption } />
             </div>
         );
     }
