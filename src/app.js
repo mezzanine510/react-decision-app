@@ -23,9 +23,6 @@ ReactDOM.render(<DecisionApp />, document.getElementById('app'));
 // const getGreeting = oldSyntax.getGreeting;
 // console.log(getGreeting());
 
-
-
-
 // // ----------- New class properties method -----------
 // class NewSyntax {
 //     name = 'BORUTOSAN';
