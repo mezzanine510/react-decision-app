@@ -1,5 +1,14 @@
+$brand-color: blue;
+$background-color: rgb(255, 253, 230);
 $brand-font: 'Zeitung Pro Thin';
+
+html {
+    font-size: 62.5%;
+}
 
 body {
     font-family: $brand-font;
+    font-size: 1.6rem;
+    background-color: $background-color;
+    margin: auto 25px;
 }

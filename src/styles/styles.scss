@@ -1,13 +1,2 @@
 @import './base/base';
-
-$brand-color: blue;
-$background-color: rgb(255, 253, 230);
-
-body {
-    background-color: $background-color;
-    margin: auto 25px;
-}
-
-button {
-    font-weight: bold;
-}
+@import './components/header';
