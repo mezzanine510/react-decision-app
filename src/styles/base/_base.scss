@@ -9,3 +9,11 @@ body {
     color: $off-white;
     // margin: auto;
 }
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
