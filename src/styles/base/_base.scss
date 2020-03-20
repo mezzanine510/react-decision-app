@@ -1,0 +1,19 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $brand-font;
+    font-size: $m-size;
+    background-color: $dark-blue;
+    color: $off-white;
+    // margin: auto;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}

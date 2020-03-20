@@ -18,7 +18,7 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.(scss)$/,
+                test: /\.(s?css)$/,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -32,9 +32,9 @@ module.exports = {
             template: './src/index.html'
         })
     ],
+    // mode: 'production',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'dist')
     }
-    // mode: 'production'
 }

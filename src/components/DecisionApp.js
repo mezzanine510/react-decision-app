@@ -75,20 +75,23 @@ export default class DecisionApp extends React.Component {
                     title={ title }
                     subtitle={ subtitle } />
 
-                <Action
-                    hasOptions={ this.state.options.length > 0 }
-                    handlePick={ this.handlePick } />
+                <div className="container">
+                    <Action
+                        hasOptions={ this.state.options.length > 0 }
+                        handlePick={ this.handlePick } />
 
-                <Options
-                    options={ this.state.options }
-                    removeAllOptions={ this.removeAllOptions }
-                    removeOption={ this.removeOption } />
-                
-                <AddOption
-                    options={ this.state.options }
-                    addOption={ this.addOption }
-                    
-                    />
+                    <div className="widget">
+                        <Options
+                            options={ this.state.options }
+                            removeAllOptions={ this.removeAllOptions }
+                            removeOption={ this.removeOption } />
+                        
+                        <AddOption
+                            options={ this.state.options }
+                            addOption={ this.addOption } />
+                    </div>
+
+                </div>
 
                 <OptionModal 
                     selectedOption={ this.state.selectedOption }
